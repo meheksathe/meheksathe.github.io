@@ -1,0 +1,390 @@
+<html>
+
+<head>
+    <title>Mehek's Web Page</title>
+</head>
+
+<body bgcolor="Pink" text="Purple">
+
+
+    <button onclick="welcomeFunction()">Push This Button</button>
+
+
+    <button onclick="setParagraph()">Disney Quote Button</button>
+    <p id="messageParagraph"></p>
+
+
+    <form name="welcomeForm">
+
+        What is your name:
+        <input type="text" name="userNameInput"> What is your favorite flower:
+        <input type="text" name="flowerInput">
+        <input type="button" name="button" value="Submit" onClick="displayMessage(this.form)">
+    </form>
+    <div style="margin: 40px auto; padding: 20px; width: 500px; font-size: 20px; font-family: 'Times New Roman', sans-serif;">
+        Mehek-Bot👧
+        <div style="margin-top: 6px; padding: 20px; background-color: #de75f9d3; border: 6px solid #5e73eb; border-radius: 25px;">
+          <form name="chatForm">
+            <p id="botSays">Hello and Welcome! To start... what is your name?</p>
+            <br>
+            <input type="text" name="userInput">
+            <input type="button" value="Send" onClick="displayFeedback(this.form)">
+          </form>
+        </div>
+      </div>
+
+
+
+    <script>
+
+
+      // Push this button Response
+      function welcomeFunction() {
+          var username;
+          var flowername;
+          username = prompt("What is your username?");
+          alert("Hello " + username);
+          flowername = prompt("What is your favorite flower?");
+          alert("You deserve some " + flowername);
+      }
+
+      // Disney Quote Response
+      function setParagraph() {
+          document.getElementById("messageParagraph").innerHTML =
+              "If you do your best each and every day, good things are sure to come your way! - Princess and The Frog";
+      }
+
+
+      // Welcome Form (displays on Tab)
+      function alertMessage(form) {
+          var userName = form.userNameInput.value;
+          alert("Hello " + userName + ", Welcome to my page!");
+      }
+
+
+      // Welcome Form (displays on Website)
+      function displayMessage(form) {
+    var userName = form.userNameInput.value; // This line is causing the error
+    var flowerName = form.flowerInput.value;
+    var flowerQuantity = form.flowerQuantityInput.value;
+
+    document.getElementById("messageParagraph").innerHTML =
+        "Hello " + userName + ", You deserve some " + flowerName + "!";
+    document.getElementById("flowerQuantityParagraph").innerHTML = "You ordered: " + flowerQuantity;
+}
+
+
+      var courseList = ['CS101', 'CS102', 'CS103', 'CS104', 'CS105'];
+      var courseInput = prompt("Enter the course ID:");
+      var courseFound = false;
+
+      for (let i = 0; i < courseList.length; i++) {
+          if (courseInput === courseList[i]) {
+              courseFound = true;
+              break;
+          }
+      }
+
+      if (courseFound) {
+          alert("Course found in the list.");
+      } else {
+          alert("Course not found in the list.");
+      }
+
+
+      var flowerList = ['rose', 'daisy', 'poppy', 'sunflower', 'orchid', 'lily', 'tulip', 'hydrangea'];
+
+      function displayFeedback(form) {
+
+
+          var flowerInput = form.flowerNameInput.value;
+          var flowerAvailable = false;
+          var feedbackText = "";
+
+          for (let i = 0; i < flowerList.length; i++) {
+              if (flowerInput.toLowerCase() == flowerList[i]) flowerAvailable = true;
+          }
+
+
+          if (flowerAvailable) feedbackText = "Great! We have that flower.";
+          else feedbackText = "Sorry, we don't have that flower.";
+
+          document.getElementById("feedbackParagraph").innerHTML = feedbackText;
+      }
+
+
+      var flowerList = ['rose', 'daisy', 'sunflower', 'orchid'];
+      var priceList = [5, 3, 10, 16];
+
+      function displayFeedback(form) {
+          var flowerInput = form.flowerNameInput.value;
+          var flowerQuantity = form.flowerQuantityInput.value;
+
+          var flowerAvailable = false;
+          var totalCost = 0;
+          var feedbackText = "";
+
+          for (let i = 0; i < flowerList.length; i++) {
+              if (flowerInput == flowerList[i]) {
+                  flowerAvailable = true;
+                  totalCost = flowerQuantity * priceList[i];
+              }
+          }
+
+          if (flowerAvailable) {
+              feedbackText = "The total cost: $" + totalCost;
+              if (totalCost > 100) {
+                  var discountedAmount = totalCost * 0.1;
+                  var newTotalCost = totalCost - discountedAmount;
+                  feedbackText += "<br>Discounted amount: $" + discountedAmount.toFixed(2);
+                  feedbackText += "<br>New total cost: $" + newTotalCost.toFixed(2);
+              }
+          } else {
+              feedbackText = "Sorry, we don't have that flower.";
+          }
+
+          document.getElementById("feedbackParagraph").innerHTML = feedbackText;
+      }
+
+      var flowerList = ['rose', 'daisy', 'sunflower', 'orchid'];
+      var priceList = [5, 3, 10, 16];
+      var quantityList = [50, 100, 30, 20];
+      var quantityAvailable = false;
+
+      function displayFeedback(form) {
+          var flowerInput = form.flowerNameInput.value.toLowerCase();
+          var flowerQuantity = form.flowerQuantityInput.value;
+
+          var flowerAvailable = false;
+          var totalCost = 0;
+          var feedbackText = "";
+
+          for (let i = 0; i < flowerList.length; i++) {
+              if (flowerInput === flowerList[i]) {
+                  flowerAvailable = true;
+                  if (flowerQuantity <= quantityList[i]) {
+                      quantityAvailable = true;
+                      totalCost = flowerQuantity * priceList[i];
+                  }
+                  break;
+              }
+          }
+
+          if (!flowerAvailable) {
+              feedbackText = "Sorry, the flower is not available.";
+          } else if (!quantityAvailable) {
+              feedbackText = "Sorry, we don't have the required amount.";
+          } else {
+              feedbackText = "The total cost: $" + totalCost;
+          }
+
+          document.getElementById("feedbackParagraph").innerHTML = feedbackText;
+      }
+      var counter = 0;
+    var totalQuestions=4;
+    var myMajor = "Psychology";
+    var favArtistsList = ["Drake", "Rihanna", "Nicki Minaj", "SZA"];
+
+    var majorInterestedList = ["Business", "Psychology", "Computer Science", "Neuroscience"];
+    var userName;
+    var response;
+
+    function displayFeedback(form) {
+      counter++;
+      var feedbackText = "";
+      var newQuestionText = "";
+      var userInput = form.userInput.value;
+
+      if (counter == 1) {
+        userName = userInput;
+        feedbackText = "Hello, " + userName + "! <br>Nice to meet you. I am Mehek, a freshman at Mount Holyoke College.";
+        newQuestionText = "Do you also attend Mount Holyoke College?";
+      } else if (counter == 2) {
+        feedbackText = "Awesome to hear!";
+        newQuestionText = "What is your major?";
+      } else if (counter == 3) {
+        if (userInput.toLowerCase() == myMajor.toLowerCase()) {
+          feedbackText = "Great! I am also majoring in " + userInput + ".";
+        } else {
+          feedbackText = "I guess you must find " + userInput + " super fun. I am majoring in " + myMajor + ".";
+
+          for (let i = 0; i < majorInterestedList.length; i++) {
+            if (userInput.toLowerCase() == majorInterestedList[i].toLowerCase()) {
+              feedbackText = userInput + " was one of the majors I was interested in. I love majoring in " + myMajor + ".";
+            }
+          }
+        }
+
+newQuestionText = "Who is your favorite artist?";
+      } else if (counter == 4) {
+        if (favArtistsList.includes(userInput)) {
+          feedbackText = "That's great! " + userInput + " is also one of my favorite artists!";
+        } else {
+          feedbackText = "I haven't heard of " + userInput + " before. I'll have to check them out!";
+        }
+      }
+      
+      if (counter>=totalQuestions ) {
+            feedbackText=feedbackText+"<br><br>It was nice talking to you, "+userName+"."+
+            "<br>I hope you have a great day!";           
+        }
+      
+      // Update the feedback and clear the input box
+      document.getElementById("botSays").innerHTML = feedbackText + "<br><br>" + newQuestionText;
+      form.userInput.value = "";
+    }
+  </script>
+
+    <h1> ABOUT ME </h1>
+
+
+    <p> <font color="Blue" size="3">
+            Hi, my name is Mehek Sathe. I live in Seattle, Washington, but I was born in India. I am 18 years old, and my birthday is in June. I have two cats, named Zeus and Zorro. I want to study psychology and then get an MBA. My dream job is being a teacher. I really like to work out, listen to music, and hang out with my friends.
+            <br><br>
+            I am a freshman at Mount Holyoke College. I have one sibling; he is 22 and likes math. I like to travel; I just went to Morocco, and my dream vacation is Egypt. One goal of mine is to travel to every continent. I like to play sports. I have done soccer, gymnastics, ballet, and finally fencing. I have been fencing for 9 years.
+            <br>
+            <br>
+            <b> I'm writing random things about me. I hope you enjoy! &hearts; </b>
+        </font>
+    </p>
+    <p> <font color="Green" size="3">
+            <i>Click here to listen to one of my <a href="https://www.youtube.com/watch?v=iD__IJWqwY8">
+                    current favorite songs!</i></a>
+
+
+            <br>
+            <br>
+
+
+            <i>Check out my college: <a href="https://www.mtholyoke.edu"> Mount Holyoke College</a></i>
+        </font>
+    </p>
+
+
+    <p> <font color="Saddlebrown" size="3">
+            <b> My favorite Rappers:
+                <ol>
+                    <li> Drake
+                    <li> Rihanna
+                    <li> Nicki Minaj
+                    <li> Drake
+                </ol>
+            </b>
+        </font>
+    </p>
+
+
+
+
+    <table style="border: 3px solid rgb(255, 255, 255); width:50%;">
+        <tr>
+            <th> Sports </th>
+            <th> Movies </th>
+            <th> Instruments </th>
+
+        </tr>
+        <tr>
+            <td>
+                <ul>
+                    <li> Fencing </li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li> Borat </li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li> Trumpet </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <ul>
+                    <li> Ballet </li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li> Avatar </li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li> Piano </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <ul>
+                    <li> Gymnastics </li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li> Ready Player One </li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li> Trombone </li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <br>
+
+
+
+
+    <p> <font color="Black" size="3">
+            <b> My favorite animal is turtles!! This image is by Daria Gordova.
+                Here is the link: <a href="https://unsplash.com/photos/person-holding-black-and-gray-turtle-figurine-v2uKKL0vnNY"> Baby Turtles!!</a>
+            </b>
+        </font>
+    </p>
+    <img src="https://images.unsplash.com/photo-1617835963886-d504ab3cca44?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" width="50%">
+    <p> <font color="Black" size="3"> Here is a photo saved from my computer!</font> </p>
+    <img src="Desktop/computer science/Mehek.webp" width="300" height="400">
+    <br>
+
+
+
+
+    <p>I found this audio sound from <a href="https://pixabay.com/music/"> PixaBay</a> </p>
+    <audio controls>
+        <source src="Desktop/computer science/the-best-jazz-club-in-new-orleans-164472.mp3" type="audio/mpeg">
+    </audio>
+
+
+
+
+    <p> Here is a video that my friends and I love from our childhood: <a href="https://www.youtube.com/watch?v=npx2NK3Utrw"> Small Potatoes Theme Song</a> </p>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/npx2NK3Utrw?si=AM9x5xkfwZctIEf_"></iframe>
+
+
+
+
+    <form>
+        <label for="fcolor"> What's your favorite color? :</label>
+        <br>
+        <input type="text" id="fcolor" name="fcolor">
+        <br>
+        <label for="zodiac"> What's your zodiac sign? :</label>
+        <br>
+        <input type="text" id="zodiac" name="zodiac">
+        <input type="submit" value="Submit">
+        <br>
+
+
+    </form>
+
+
+
+</body>
+
+</html>
